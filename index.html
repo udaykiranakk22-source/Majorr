@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Credit Lens - Intelligent Loan Eligibility Platform for Indian Banking" />
+    <title>Credit Lens - Intelligent Loan Eligibility Platform</title>
+    <script>
+      // Suppress Google Maps native error dialogs
+      window.addEventListener('error', function(e) {
+        if (e.message && (e.message.includes('Google Maps') || e.message.includes('maps.googleapis.com') || e.message.includes('gm_authFailure'))) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        }
+      }, true);
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
