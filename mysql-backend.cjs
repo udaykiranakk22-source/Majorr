@@ -574,65 +574,34 @@ app.post('/login', async (req, res) => {
       return res.status(401).json({ success: false, message: 'Invalid username or password' });
     }
 
-    // Credentials are valid - send OTP
-    const otp = generateOTP();
-    const expiresAt = Date.now() + 5 * 60 * 1000; // 5 minutes
+    // Credentials are valid - generate JWT token and login directly
+    const token = jwt.sign(
+      {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        role: user.role || 'user',
+        name: user.name
+      },
+      JWT_SECRET,
+      { expiresIn: '24h' }
+    );
 
-    // Store OTP
-    otpStore.set(user.email, {
-      otp,
-      expiresAt,
-      attempts: 0
-    });
+    console.log(`User ${user.username} logged in successfully`);
 
-    // Store pending login session
-    pendingLogins.set(user.email, {
+    res.status(200).json({
+      success: true,
+      message: 'Login successful',
+      requiresOTP: false,
+      token,
       user: {
         id: user.id,
         name: user.name,
         email: user.email,
         username: user.username,
         role: user.role || 'user'
-      },
-      expiresAt
-    });
-
-    // Send OTP email
-    try {
-      await sendOTP(user.email, otp);
-      console.log(`OTP sent to ${user.email} for login`);
-      
-      res.status(200).json({ 
-        success: true, 
-        message: 'OTP sent to your email. Please verify to complete login.',
-        requiresOTP: true,
-        email: user.email // Send masked email for display
-      });
-    } catch (emailError) {
-      console.error('Error sending OTP email:', emailError);
-      console.error('Email error details:', {
-        message: emailError.message,
-        code: emailError.code,
-        response: emailError.response,
-        responseCode: emailError.responseCode
-      });
-      // Clear stored data on email failure
-      otpStore.delete(user.email);
-      pendingLogins.delete(user.email);
-      
-      // Provide more detailed error message
-      let errorMessage = 'Failed to send OTP. Please try again later.';
-      if (emailError.code === 'EAUTH' || emailError.responseCode === 535) {
-        errorMessage = 'SMTP authentication failed. Please check email credentials.';
-      } else if (emailError.code === 'ECONNECTION') {
-        errorMessage = 'Failed to connect to email server.';
       }
-      
-      res.status(500).json({ 
-        success: false, 
-        message: errorMessage 
-      });
-    }
+    });
   } catch (error) {
     console.error('Login error:', error);
     res.status(500).json({ success: false, message: 'Internal server error during login' });
