@@ -1881,29 +1881,29 @@ Available banking services: account management, money transfers, bill payments, 
             </div>
 
             <div className="grid w-full max-w-xl grid-cols-1 gap-4 sm:grid-cols-2">
-              <div className="stat-card rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl p-5 shadow-xl">
-                <p className="text-sm text-white/80 font-medium">Total Balance</p>
-                <p className="mt-2 text-2xl font-bold text-white tracking-tight">
+              <div className="stat-card rounded-2xl border border-white/30 bg-white/20 backdrop-blur-md p-5 shadow-xl">
+                <p className="text-sm text-blue-100 font-medium">Total Balance</p>
+                <p className="mt-2 text-3xl font-extrabold text-white tracking-tight drop-shadow-md">
                   {showBalance ? formattedTotalBalance : '••••'}
                 </p>
-                <div className="mt-4 flex items-center gap-2 text-xs uppercase tracking-wider text-white/60">
-                  <TrendingUp className="h-4 w-4 text-cyan-300" />
+                <div className="mt-4 flex items-center gap-2 text-xs uppercase tracking-wider text-blue-200">
+                  <TrendingUp className="h-4 w-4 text-yellow-300" />
                   Real-time snapshot
                 </div>
               </div>
-              <div className="stat-card rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl p-5 shadow-xl">
-                <p className="text-sm text-white/80 font-medium">Active Accounts</p>
-                <p className="mt-2 text-2xl font-bold text-white tracking-tight">{accountCount}</p>
-                <div className="mt-4 flex items-center gap-2 text-xs uppercase tracking-wider text-white/60">
-                  <ShieldCheck className="h-4 w-4 text-emerald-300" />
+              <div className="stat-card rounded-2xl border border-white/30 bg-white/20 backdrop-blur-md p-5 shadow-xl">
+                <p className="text-sm text-blue-100 font-medium">Active Accounts</p>
+                <p className="mt-2 text-3xl font-extrabold text-white tracking-tight drop-shadow-md">{accountCount}</p>
+                <div className="mt-4 flex items-center gap-2 text-xs uppercase tracking-wider text-blue-200">
+                  <ShieldCheck className="h-4 w-4 text-green-300" />
                   Secured by Credit Lens Guard
                 </div>
               </div>
-              <div className="stat-card rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl p-5 shadow-xl sm:col-span-2">
-                <p className="text-sm text-white/80 font-medium">Transactions Tracked</p>
+              <div className="stat-card rounded-2xl border border-white/30 bg-white/20 backdrop-blur-md p-5 shadow-xl sm:col-span-2">
+                <p className="text-sm text-blue-100 font-medium">Transactions Tracked</p>
                 <div className="mt-2 flex items-end justify-between">
-                  <span className="text-2xl font-bold text-white tracking-tight">{totalTransactions}</span>
-                  <span className="text-xs text-white/60 uppercase tracking-wider">Current period</span>
+                  <span className="text-3xl font-extrabold text-white tracking-tight drop-shadow-md">{totalTransactions}</span>
+                  <span className="text-xs text-blue-200 uppercase tracking-wider">Current period</span>
                 </div>
               </div>
             </div>
