@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Loader2, Eye, EyeOff, CheckCircle, XCircle, Shield } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/components/ui/use-toast";
+import heroBgImage from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -303,7 +304,7 @@ const HeroSection = () => {
       <section
         className="relative min-h-[600px] overflow-hidden bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1920&q=80')`,
+          backgroundImage: `url(${heroBgImage})`,
         }}
       >
         {/* Dark overlay for better text readability */}
