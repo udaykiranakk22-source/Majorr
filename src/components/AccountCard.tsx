@@ -138,8 +138,8 @@ const AccountCard = ({ account }: AccountCardProps) => {
       : null;
 
   return (
-    <Card className="group relative overflow-hidden border-none bg-white/75 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_35px_70px_-40px_rgba(12,74,110,0.55)]">
-      <div className="absolute inset-0 bg-gradient-to-br from-[hsla(150,60%,35%,0.18)] via-[hsla(180,70%,45%,0.12)] to-[hsla(195,100%,50%,0.08)] opacity-90" />
+    <Card className="group relative overflow-hidden border border-white/40 bg-white/80 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_35px_70px_-40px_rgba(30,64,175,0.4)]">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-indigo-50/30 to-cyan-50/20 opacity-90" />
       <CardHeader className="relative z-10 border-b border-white/40 pb-4">
         <div className="flex items-start justify-between">
           <div className="flex items-center space-x-3">

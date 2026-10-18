@@ -210,27 +210,27 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="relative z-40 w-full border-b border-slate-100 bg-white/90 backdrop-blur-xl shadow-[0_12px_30px_-20px_rgba(15,23,42,0.25)]">
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-emerald-300/60 to-transparent" />
+    <header className="relative z-40 w-full border-b border-blue-100/50 bg-white/90 backdrop-blur-xl shadow-[0_12px_30px_-20px_rgba(30,64,175,0.15)]">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-blue-400/40 to-transparent" />
 
       {/* Top Utility Bar */}
-      <div className="bg-gradient-to-r from-emerald-50/70 via-teal-50 to-sky-50/80">
+      <div className="bg-gradient-to-r from-blue-50/70 via-indigo-50/50 to-sky-50/60">
         <div className="container mx-auto px-4 py-2 flex flex-col gap-2 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-2 text-emerald-600">
+          <div className="flex items-center gap-2 text-blue-600">
             <Sparkles className="h-3.5 w-3.5" />
-            <span className="font-medium uppercase tracking-wide text-xs text-emerald-500">New</span>
+            <span className="font-medium uppercase tracking-wide text-xs text-blue-500">New</span>
             <p className="text-slate-500">Check your loan eligibility in under 2 minutes</p>
           </div>
           <div className="flex items-center gap-4">
             <div ref={searchRef} className="relative hidden sm:block">
               <form onSubmit={handleSearch} className="relative">
                 <Search
-                  className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform cursor-pointer text-emerald-500 hover:text-emerald-600"
+                  className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform cursor-pointer text-blue-500 hover:text-blue-600"
                   onClick={handleSearch}
                 />
                 <Input
                   placeholder="Search Credit Lens"
-                  className="h-9 w-64 rounded-full border-slate-200/70 bg-white/80 pl-10 text-sm shadow-inner focus-visible:ring-emerald-400"
+                  className="h-9 w-64 rounded-full border-slate-200/70 bg-white/80 pl-10 text-sm shadow-inner focus-visible:ring-blue-400"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyDown={handleKeyDown}
@@ -248,7 +248,7 @@ const Header = () => {
                     <div
                       key={index}
                       className={`cursor-pointer border-b border-slate-100/80 px-4 py-3 transition-colors last:border-b-0 ${
-                        index === selectedIndex ? "border-emerald-200 bg-emerald-50/80" : "hover:bg-slate-50/80"
+                        index === selectedIndex ? "border-blue-200 bg-blue-50/80" : "hover:bg-slate-50/80"
                       }`}
                       onClick={() => handleSuggestionClick(suggestion)}
                       onMouseEnter={() => setSelectedIndex(index)}
@@ -262,7 +262,7 @@ const Header = () => {
                             {suggestion.description}
                           </div>
                         </div>
-                        <ArrowRight className="h-4 w-4 text-emerald-400" />
+                        <ArrowRight className="h-4 w-4 text-blue-400" />
                       </div>
                     </div>
                   ))}
@@ -276,12 +276,12 @@ const Header = () => {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="relative h-8 w-8 rounded-full border border-slate-200/70 text-slate-500 transition hover:border-emerald-200 hover:text-emerald-600"
+                  className="relative h-8 w-8 rounded-full border border-slate-200/70 text-slate-500 transition hover:border-blue-200 hover:text-blue-600"
                   aria-label="Notifications"
                 >
                   <Bell className="h-4 w-4" />
                   {unreadCount > 0 && (
-                    <span className="absolute -top-1 -right-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500 text-[10px] font-semibold text-white shadow-lg">
+                    <span className="absolute -top-1 -right-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-blue-500 text-[10px] font-semibold text-white shadow-lg">
                       {unreadCount > 9 ? '9+' : unreadCount}
                     </span>
                   )}
@@ -363,7 +363,7 @@ const Header = () => {
                             case 'transaction_success':
                             case 'transfer_success':
                             case 'deposit_success':
-                              return 'bg-emerald-50 border-emerald-200';
+                              return 'bg-blue-50 border-blue-200';
                             case 'transaction_failed':
                             case 'transfer_failed':
                             case 'deposit_failed':
@@ -431,7 +431,7 @@ const Header = () => {
                                     </p>
                                   </div>
                                   {!notification.read && (
-                                    <div className="h-2 w-2 rounded-full bg-emerald-500 flex-shrink-0 mt-1" />
+                                    <div className="h-2 w-2 rounded-full bg-blue-500 flex-shrink-0 mt-1" />
                                   )}
                                 </div>
                               </div>
@@ -447,7 +447,7 @@ const Header = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="h-8 w-8 rounded-full border border-slate-200/70 text-slate-500 transition hover:border-emerald-200 hover:text-emerald-600"
+              className="h-8 w-8 rounded-full border border-slate-200/70 text-slate-500 transition hover:border-blue-200 hover:text-blue-600"
               onClick={() => navigate("/profile")}
               aria-label="Profile & Settings"
             >
@@ -458,7 +458,7 @@ const Header = () => {
             <Button
               variant="ghost"
               size="sm"
-              className="inline-flex items-center gap-2 rounded-full border border-slate-200/70 bg-white/70 px-4 text-slate-500 shadow-sm transition hover:border-emerald-200 hover:text-emerald-600"
+              className="inline-flex items-center gap-2 rounded-full border border-slate-200/70 bg-white/70 px-4 text-slate-500 shadow-sm transition hover:border-blue-200 hover:text-blue-600"
               onClick={() => setShowBranchLocator(true)}
             >
               <MapPin className="h-4 w-4 mr-1" />
@@ -476,7 +476,7 @@ const Header = () => {
             onClick={() => window.location.href = '/dashboard'}
             title="Go to Homepage"
           >
-            <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 via-teal-500 to-sky-500 shadow-lg shadow-emerald-500/30">
+            <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 via-indigo-600 to-blue-700 shadow-lg shadow-blue-500/30">
               <div className="absolute inset-0 animate-pulse rounded-full bg-white/10" />
               <div className="relative flex h-9 w-9 items-center justify-center rounded-full bg-white text-[hsl(var(--credit-lens-primary))] font-semibold">
                 CL
@@ -484,7 +484,7 @@ const Header = () => {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-slate-800">Credit Lens</h1>
-              <p className="text-xs font-medium uppercase tracking-widest text-emerald-500">
+              <p className="text-xs font-medium uppercase tracking-widest text-blue-500">
                 Intelligent Loan Eligibility Platform
               </p>
             </div>
@@ -497,7 +497,7 @@ const Header = () => {
       {/* DICGC Notice */}
       <div className="border-t border-slate-100 bg-white/70">
         <div className="container mx-auto px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-slate-400">
-          <span className="font-semibold text-emerald-500">DICGC Insured</span> · Deposits insured up to ₹5,00,000 per depositor per bank
+          <span className="font-semibold text-blue-600">DICGC Insured</span> · Deposits insured up to ₹5,00,000 per depositor per bank
         </div>
       </div>
 

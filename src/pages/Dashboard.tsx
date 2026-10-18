@@ -1453,15 +1453,16 @@ Available banking services: account management, money transfers, bill payments, 
       
       // Use auth context user data if available, otherwise use demo data
       if (authUser) {
+        const displayName = authUser.name || authUser.username || authUser.email?.split('@')[0] || "User";
         setUser({
-          name: authUser.name || "Demo User",
+          name: displayName,
           accountNumber: "****1234",
           balance: 6000,
           lastLogin: "Today at 2:30 PM"
         });
       } else {
         setUser({
-          name: "Demo User",
+          name: "User",
           accountNumber: "****1234",
           balance: 6000,
           lastLogin: "Today at 2:30 PM"
@@ -1804,21 +1805,44 @@ Available banking services: account management, money transfers, bill payments, 
   console.log('🎨 Dashboard rendering...');
   console.log('🚀 Loading dashboard (authentication optional)');
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-slate-100 via-white to-slate-100">
+    <div className="relative min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/40">
+      {/* Futuristic animated background */}
+      <style>{`
+        @keyframes float1 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(30px, -20px) scale(1.1); } }
+        @keyframes float2 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-20px, 30px) scale(1.05); } }
+        @keyframes float3 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(15px, 15px) scale(0.95); } }
+        @keyframes pulse-glow { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.7; } }
+        @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+        .glass-card { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.3); }
+        .glass-card-dark { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(255,255,255,0.85); border: 1px solid rgba(226,232,240,0.6); }
+        .shimmer-border { position: relative; overflow: hidden; }
+        .shimmer-border::before { content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; background: linear-gradient(90deg, transparent 0%, rgba(59,130,246,0.3) 50%, transparent 100%); background-size: 200% 100%; animation: shimmer 3s ease-in-out infinite; border-radius: inherit; z-index: -1; }
+        .stat-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .stat-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 40px -15px rgba(30, 64, 175, 0.3); }
+        .hero-glow { box-shadow: 0 0 80px 20px rgba(30, 64, 175, 0.15), 0 32px 60px -28px rgba(12, 74, 110, 0.6); }
+      `}</style>
       <Header />
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute right-[-10%] top-36 h-80 w-80 rounded-full bg-[hsl(var(--blue-700)_/_0.12)] blur-3xl" />
-        <div className="absolute left-[-6%] bottom-24 h-96 w-96 rounded-full bg-[hsl(var(--blue-600)_/_0.1)] blur-3xl" />
+        <div className="absolute right-[-10%] top-36 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl" style={{ animation: 'float1 8s ease-in-out infinite' }} />
+        <div className="absolute left-[-6%] bottom-24 h-[28rem] w-[28rem] rounded-full bg-indigo-500/8 blur-3xl" style={{ animation: 'float2 10s ease-in-out infinite' }} />
+        <div className="absolute left-1/2 top-1/3 h-72 w-72 rounded-full bg-cyan-400/6 blur-3xl" style={{ animation: 'float3 12s ease-in-out infinite' }} />
       </div>
 
       <div className="relative z-10 container mx-auto px-4 py-10 space-y-10">
         {/* Personalized Welcome Message */}
-        <section className="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-[hsl(var(--blue-600))] via-[hsl(var(--blue-700))] to-[hsl(var(--credit-lens-secondary))] p-8 text-white shadow-[0_32px_60px_-28px_rgba(12,74,110,0.6)]">
-          <div className="absolute inset-0 opacity-60">
-            <div className="absolute -left-24 top-0 h-64 w-64 rounded-full bg-white/20 blur-3xl" />
-            <div className="absolute right-[-10%] bottom-[-20%] h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+        <section className="hero-glow relative overflow-hidden rounded-[32px] bg-gradient-to-br from-[hsl(var(--blue-600))] via-[hsl(var(--blue-700))] to-indigo-900 p-8 text-white">
+          {/* Animated mesh background */}
+          <div className="absolute inset-0 opacity-40">
+            <div className="absolute -left-24 top-0 h-64 w-64 rounded-full bg-cyan-400/40 blur-3xl" style={{ animation: 'float1 6s ease-in-out infinite' }} />
+            <div className="absolute right-[-10%] bottom-[-20%] h-72 w-72 rounded-full bg-blue-300/30 blur-3xl" style={{ animation: 'float2 8s ease-in-out infinite' }} />
+            <div className="absolute left-1/3 top-1/2 h-48 w-48 rounded-full bg-indigo-400/20 blur-3xl" style={{ animation: 'float3 10s ease-in-out infinite' }} />
           </div>
+          {/* Grid pattern overlay */}
+          <div className="absolute inset-0 opacity-[0.04]" style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }} />
 
           <div className="relative z-10 flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
             <div className="space-y-6 max-w-xl">
@@ -1827,8 +1851,8 @@ Available banking services: account management, money transfers, bill payments, 
               </Badge>
 
               <div className="space-y-3">
-                <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-                  Welcome back, {user.name}!
+                <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white drop-shadow-lg">
+                  Welcome back, <span className="text-yellow-300">{user.name}</span>!
                 </h2>
                 <p className="flex items-center gap-2 text-white/90 font-medium">
                   <CalendarDays className="h-5 w-5 text-white" />
@@ -1857,29 +1881,29 @@ Available banking services: account management, money transfers, bill payments, 
             </div>
 
             <div className="grid w-full max-w-xl grid-cols-1 gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-lg">
-                <p className="text-sm text-gray-600">Total Balance</p>
-                <p className="mt-2 text-2xl font-semibold text-gray-900">
+              <div className="stat-card rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl p-5 shadow-xl">
+                <p className="text-sm text-white/80 font-medium">Total Balance</p>
+                <p className="mt-2 text-2xl font-bold text-white tracking-tight">
                   {showBalance ? formattedTotalBalance : '••••'}
                 </p>
-                <div className="mt-4 flex items-center gap-2 text-xs uppercase tracking-wide text-gray-500">
-                  <TrendingUp className="h-4 w-4 text-[hsl(var(--blue-600))]" />
+                <div className="mt-4 flex items-center gap-2 text-xs uppercase tracking-wider text-white/60">
+                  <TrendingUp className="h-4 w-4 text-cyan-300" />
                   Real-time snapshot
                 </div>
               </div>
-              <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-lg">
-                <p className="text-sm text-gray-600">Active Accounts</p>
-                <p className="mt-2 text-2xl font-semibold text-gray-900">{accountCount}</p>
-                <div className="mt-4 flex items-center gap-2 text-xs uppercase tracking-wide text-gray-500">
-                  <ShieldCheck className="h-4 w-4 text-[hsl(var(--blue-600))]" />
+              <div className="stat-card rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl p-5 shadow-xl">
+                <p className="text-sm text-white/80 font-medium">Active Accounts</p>
+                <p className="mt-2 text-2xl font-bold text-white tracking-tight">{accountCount}</p>
+                <div className="mt-4 flex items-center gap-2 text-xs uppercase tracking-wider text-white/60">
+                  <ShieldCheck className="h-4 w-4 text-emerald-300" />
                   Secured by Credit Lens Guard
                 </div>
               </div>
-              <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-lg sm:col-span-2">
-                <p className="text-sm text-gray-600">Transactions Tracked</p>
+              <div className="stat-card rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl p-5 shadow-xl sm:col-span-2">
+                <p className="text-sm text-white/80 font-medium">Transactions Tracked</p>
                 <div className="mt-2 flex items-end justify-between">
-                  <span className="text-2xl font-semibold text-gray-900">{totalTransactions}</span>
-                  <span className="text-xs text-gray-500">Current period</span>
+                  <span className="text-2xl font-bold text-white tracking-tight">{totalTransactions}</span>
+                  <span className="text-xs text-white/60 uppercase tracking-wider">Current period</span>
                 </div>
               </div>
             </div>
@@ -1896,28 +1920,28 @@ Available banking services: account management, money transfers, bill payments, 
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4 rounded-2xl border border-slate-200/70 bg-white/80 p-1 shadow-sm backdrop-blur">
+          <TabsList className="grid w-full grid-cols-4 rounded-2xl border border-slate-200/50 bg-white/70 p-1.5 shadow-lg backdrop-blur-xl">
             <TabsTrigger
               value="overview"
-              className="rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-[hsl(var(--blue-600))] data-[state=active]:to-[hsl(var(--blue-700))] data-[state=active]:text-white data-[state=active]:shadow-lg"
+              className="rounded-xl px-4 py-3 text-sm font-semibold text-slate-500 transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-700 data-[state=active]:text-white data-[state=active]:shadow-[0_8px_25px_-8px_rgba(30,64,175,0.5)] hover:text-slate-700"
             >
               Account Overview
             </TabsTrigger>
             <TabsTrigger
               value="transactions"
-              className="rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-[hsl(var(--blue-600))] data-[state=active]:to-[hsl(var(--blue-700))] data-[state=active]:text-white data-[state=active]:shadow-lg"
+              className="rounded-xl px-4 py-3 text-sm font-semibold text-slate-500 transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-700 data-[state=active]:text-white data-[state=active]:shadow-[0_8px_25px_-8px_rgba(30,64,175,0.5)] hover:text-slate-700"
             >
               Recent Transactions
             </TabsTrigger>
             <TabsTrigger
               value="loans"
-              className="rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-[hsl(var(--blue-600))] data-[state=active]:to-[hsl(var(--blue-700))] data-[state=active]:text-white data-[state=active]:shadow-lg"
+              className="rounded-xl px-4 py-3 text-sm font-semibold text-slate-500 transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-700 data-[state=active]:text-white data-[state=active]:shadow-[0_8px_25px_-8px_rgba(30,64,175,0.5)] hover:text-slate-700"
             >
               Loan Applications
             </TabsTrigger>
             <TabsTrigger
               value="business"
-              className="rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-[hsl(var(--blue-600))] data-[state=active]:to-[hsl(var(--blue-700))] data-[state=active]:text-white data-[state=active]:shadow-lg"
+              className="rounded-xl px-4 py-3 text-sm font-semibold text-slate-500 transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-700 data-[state=active]:text-white data-[state=active]:shadow-[0_8px_25px_-8px_rgba(30,64,175,0.5)] hover:text-slate-700"
             >
               Business Applications
             </TabsTrigger>
@@ -1927,9 +1951,9 @@ Available banking services: account management, money transfers, bill payments, 
           <TabsContent value="overview" className="space-y-6">
             <div className="grid gap-6 xl:grid-cols-[3fr,2fr]">
               <div className="space-y-6">
-                <div className="flex flex-wrap items-center justify-between gap-3 rounded-[28px] border border-slate-200/60 bg-white/85 p-5 shadow-[0_25px_60px_-40px_rgba(12,74,110,0.45)] backdrop-blur">
+                <div className="shimmer-border flex flex-wrap items-center justify-between gap-3 rounded-[28px] border border-slate-200/40 bg-white/80 p-5 shadow-xl backdrop-blur-xl">
                   <div>
-                    <h3 className="text-lg font-semibold text-slate-800">Your Accounts</h3>
+                    <h3 className="text-lg font-bold text-slate-800">Your Accounts</h3>
                     <p className="text-sm text-slate-500">Showing {accounts.length} account{accounts.length === 1 ? '' : 's'}</p>
                   </div>
                   <Button
@@ -1967,10 +1991,10 @@ Available banking services: account management, money transfers, bill payments, 
               </div>
 
               <div className="space-y-6">
-                <div className="rounded-[28px] border border-slate-200/60 bg-white/85 p-6 shadow-[0_25px_50px_-35px_rgba(15,23,42,0.45)] backdrop-blur">
+                <div className="glass-card-dark rounded-[28px] p-6 shadow-xl">
                   <div className="flex items-center justify-between gap-3">
                     <div>
-                      <h3 className="text-lg font-semibold text-slate-800">Account Health</h3>
+                      <h3 className="text-lg font-bold text-slate-800">Account Health</h3>
                       <p className="text-xs uppercase tracking-wide text-slate-400">Stay ahead of potential issues</p>
                     </div>
                     <Badge className={`rounded-full px-3 py-1 text-xs ${positiveAccountCount === accountCount ? 'bg-[hsl(var(--blue-600))] text-white' : 'bg-amber-100 text-amber-600'}`}>
@@ -1998,7 +2022,7 @@ Available banking services: account management, money transfers, bill payments, 
                             </div>
                             <div className="text-right">
                               <p className={`text-sm font-semibold ${hasOverdraft ? 'text-rose-500' : hasLowBalance ? 'text-amber-500' : 'text-emerald-500'}`}>
-                                ${Math.abs(account.balance).toLocaleString()}
+                                ₹{Math.abs(account.balance).toLocaleString('en-IN')}
                               </p>
                               <div className="mt-1 flex items-center justify-end gap-2 text-xs text-slate-400">
                                 {hasOverdraft && <Badge variant="destructive">Overdraft</Badge>}
@@ -2013,8 +2037,8 @@ Available banking services: account management, money transfers, bill payments, 
                   </div>
                 </div>
 
-                <div className="rounded-[28px] border border-slate-200/60 bg-white/85 p-6 shadow-[0_25px_50px_-35px_rgba(15,23,42,0.45)] backdrop-blur">
-                  <h3 className="text-lg font-semibold text-slate-800">Insights</h3>
+                <div className="glass-card-dark rounded-[28px] p-6 shadow-xl">
+                  <h3 className="text-lg font-bold text-slate-800">Insights</h3>
                   {topAccount ? (
                     <div className="mt-4 space-y-4">
                       <div className="rounded-2xl border border-white/50 bg-gradient-to-r from-[hsl(var(--blue-700)_/_0.12)] to-white p-4 shadow-sm">
@@ -2041,10 +2065,10 @@ Available banking services: account management, money transfers, bill payments, 
 
           {/* Transactions Tab */}
           <TabsContent value="transactions" className="space-y-6">
-            <Card>
+            <Card className="border border-slate-200/70 bg-white shadow-lg">
               <CardHeader>
                 <div className="flex justify-between items-center">
-                  <CardTitle>Recent Transactions</CardTitle>
+                  <CardTitle className="text-xl font-bold text-slate-800">Recent Transactions</CardTitle>
                   <div className="flex space-x-2">
                     <Select>
                       <SelectTrigger className="w-32">
@@ -2104,10 +2128,10 @@ Available banking services: account management, money transfers, bill payments, 
 
           {/* Loan Applications Tab */}
           <TabsContent value="loans" className="space-y-6">
-            <Card>
+            <Card className="border border-slate-200/70 bg-white shadow-lg">
               <CardHeader>
                 <div className="flex justify-between items-center">
-                  <CardTitle>Loan Applications</CardTitle>
+                  <CardTitle className="text-xl font-bold text-slate-800">Loan Applications</CardTitle>
                   <Button 
                     variant="outline" 
                     size="sm" 
@@ -2137,15 +2161,15 @@ Available banking services: account management, money transfers, bill payments, 
                 ) : (
                   <div className="space-y-4">
                     {loanApplications.map((application) => (
-                      <div key={application.id} className="flex justify-between items-center p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+                      <div key={application.id} className="flex justify-between items-center p-4 border border-slate-200/70 rounded-xl bg-white hover:bg-slate-50 transition-colors shadow-sm">
                         <div className="flex items-center space-x-4">
                           <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
                             <DollarSign className="h-5 w-5 text-blue-600" />
                           </div>
                           <div>
-                            <p className="font-medium">{application.loan_type}</p>
-                            <p className="text-sm text-gray-600">Amount: ${parseFloat(application.loan_amount).toLocaleString()}</p>
-                            <p className="text-sm text-gray-500">Submitted: {new Date(application.submitted_at).toLocaleDateString()}</p>
+                            <p className="font-semibold text-slate-800">{application.loan_type}</p>
+                            <p className="text-sm text-slate-600">Amount: ₹{parseFloat(application.loan_amount).toLocaleString('en-IN')}</p>
+                            <p className="text-sm text-slate-500">Submitted: {new Date(application.submitted_at).toLocaleDateString()}</p>
                           </div>
                         </div>
                         <div className="text-right">
@@ -2175,10 +2199,10 @@ Available banking services: account management, money transfers, bill payments, 
 
           {/* Business Applications Tab */}
           <TabsContent value="business" className="space-y-6">
-            <Card>
+            <Card className="border border-slate-200/70 bg-white shadow-lg">
               <CardHeader>
                 <div className="flex justify-between items-center">
-                  <CardTitle>Business Applications</CardTitle>
+                  <CardTitle className="text-xl font-bold text-slate-800">Business Applications</CardTitle>
                   <Button 
                     variant="outline" 
                     size="sm" 
@@ -2208,15 +2232,15 @@ Available banking services: account management, money transfers, bill payments, 
                 ) : (
                   <div className="space-y-4">
                     {businessApplications.map((application) => (
-                      <div key={application.id} className="flex justify-between items-center p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+                      <div key={application.id} className="flex justify-between items-center p-4 border border-slate-200/70 rounded-xl bg-white hover:bg-slate-50 transition-colors shadow-sm">
                         <div className="flex items-center space-x-4">
                           <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
                             <Building2 className="h-5 w-5 text-blue-600" />
                           </div>
                           <div>
-                            <p className="font-medium">{application.business_name}</p>
-                            <p className="text-sm text-gray-600">{application.account_type.replace('_', ' ').toUpperCase()}</p>
-                            <p className="text-sm text-gray-500">Submitted: {new Date(application.created_at).toLocaleDateString()}</p>
+                            <p className="font-semibold text-slate-800">{application.business_name}</p>
+                            <p className="text-sm text-slate-600">{application.account_type.replace('_', ' ').toUpperCase()}</p>
+                            <p className="text-sm text-slate-500">Submitted: {new Date(application.created_at).toLocaleDateString()}</p>
                           </div>
                         </div>
                         <div className="text-right">
@@ -2536,7 +2560,7 @@ Available banking services: account management, money transfers, bill payments, 
             <div className="rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-[0_25px_45px_-35px_rgba(15,23,42,0.45)] backdrop-blur">
               <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">Spending Overview</div>
               <div className="mt-1 text-3xl font-semibold text-slate-800">
-                ${totalExpenses.toLocaleString()}
+                ₹{totalExpenses.toLocaleString('en-IN')}
               </div>
               <p className="text-xs text-slate-400">Last 30 days</p>
 

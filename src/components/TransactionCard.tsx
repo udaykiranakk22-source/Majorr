@@ -95,34 +95,34 @@ const TransactionCard = ({ transaction, userAccountIds = [] }: TransactionCardPr
   const isIncoming = !isUserSender && isUserReceiver;
 
   return (
-    <Card className="hover:shadow-md transition-shadow">
+    <Card className="group border border-slate-200/60 bg-white/90 backdrop-blur-sm shadow-sm hover:shadow-lg hover:border-blue-200/50 transition-all duration-300 hover:-translate-y-0.5">
       <CardContent className="p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className={`p-2 rounded-full ${
-              isOutgoing ? 'bg-red-100' : isIncoming ? 'bg-green-100' : 'bg-blue-100'
+            <div className={`p-2.5 rounded-xl shadow-sm transition-transform group-hover:scale-110 ${
+              isOutgoing ? 'bg-gradient-to-br from-red-50 to-red-100' : isIncoming ? 'bg-gradient-to-br from-emerald-50 to-emerald-100' : 'bg-gradient-to-br from-blue-50 to-blue-100'
             }`}>
               {getTransactionIcon(transaction.transaction_type)}
             </div>
             <div>
-              <p className="font-medium text-gray-900">{getTransactionDescription()}</p>
+              <p className="font-semibold text-slate-800">{getTransactionDescription()}</p>
               <div className="flex items-center space-x-2 mt-1">
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-slate-500">
                   {new Date(transaction.created_at).toLocaleDateString('en-IN')}
                 </p>
-                <Badge className={`text-xs ${getStatusColor(transaction.status)}`}>
+                <Badge className={`text-xs rounded-full ${getStatusColor(transaction.status)}`}>
                   {transaction.status}
                 </Badge>
               </div>
             </div>
           </div>
           <div className="text-right">
-            <p className={`font-bold text-lg ${
-              isOutgoing ? 'text-red-600' : isIncoming ? 'text-green-600' : 'text-blue-600'
+            <p className={`font-bold text-lg tracking-tight ${
+              isOutgoing ? 'text-red-600' : isIncoming ? 'text-emerald-600' : 'text-blue-600'
             }`}>
               {isOutgoing ? '-' : isIncoming ? '+' : ''}{'₹'}{Math.abs(transaction.amount).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </p>
-            <p className="text-xs text-gray-500 capitalize">
+            <p className="text-xs text-slate-400 capitalize font-medium">
               {transaction.transaction_type}
             </p>
           </div>
