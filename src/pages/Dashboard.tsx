@@ -1854,7 +1854,7 @@ Available banking services: account management, money transfers, bill payments, 
                 <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white drop-shadow-lg">
                   Welcome back, <span className="text-yellow-300">{user.name}</span>!
                 </h2>
-                <p className="flex items-center gap-2 text-white font-bold drop-shadow-lg" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>
+                <p className="flex items-center gap-2 font-bold text-slate-950" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.4)' }}>
                   <CalendarDays className="h-5 w-5 text-yellow-300" />
                   Last login: {user.lastLogin}
                 </p>
@@ -1864,7 +1864,8 @@ Available banking services: account management, money transfers, bill payments, 
                 <Button
                   variant="ghost"
                   onClick={handleLogout}
-                  className="rounded-full border-2 border-white bg-white px-5 text-blue-900 hover:bg-blue-50 hover:text-blue-900 shadow-md font-bold"
+                  className="rounded-full border border-white/40 bg-white/20 backdrop-blur-sm px-5 font-bold text-slate-950 hover:bg-white/30 hover:text-slate-950 shadow-sm"
+                  style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}
                 >
                   <LogOut className="h-4 w-4" />
                   Logout
@@ -1872,7 +1873,8 @@ Available banking services: account management, money transfers, bill payments, 
                 <button
                   type="button"
                   onClick={() => setShowBalance(prev => !prev)}
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-white bg-white px-4 py-2 text-sm font-bold text-blue-900 transition hover:bg-blue-50 hover:text-blue-900 shadow-md"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/20 backdrop-blur-sm px-4 py-2 text-sm font-bold text-slate-950 transition hover:bg-white/30 hover:text-slate-950 shadow-sm"
+                  style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}
                 >
                   {showBalance ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   {showBalance ? 'Hide Balances' : 'Show Balances'}
@@ -1881,29 +1883,29 @@ Available banking services: account management, money transfers, bill payments, 
             </div>
 
             <div className="grid w-full max-w-xl grid-cols-1 gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-lg">
-                <p className="text-sm text-slate-600 font-medium">Total Balance</p>
-                <p className="mt-2 text-3xl font-extrabold text-blue-900 tracking-tight">
+              <div className="stat-card rounded-2xl border border-white/30 bg-white/20 backdrop-blur-md p-5 shadow-xl">
+                <p className="text-sm font-semibold text-blue-950" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>Total Balance</p>
+                <p className="mt-2 text-3xl font-extrabold text-slate-950 tracking-tight" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.4)' }}>
                   {showBalance ? formattedTotalBalance : '••••'}
                 </p>
-                <div className="mt-4 flex items-center gap-2 text-xs uppercase tracking-wider text-slate-500">
-                  <TrendingUp className="h-4 w-4 text-blue-600" />
+                <div className="mt-4 flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-blue-950" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
+                  <TrendingUp className="h-4 w-4 text-yellow-300" />
                   Real-time snapshot
                 </div>
               </div>
-              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-lg">
-                <p className="text-sm text-slate-600 font-medium">Active Accounts</p>
-                <p className="mt-2 text-3xl font-extrabold text-blue-900 tracking-tight">{accountCount}</p>
-                <div className="mt-4 flex items-center gap-2 text-xs uppercase tracking-wider text-slate-500">
-                  <ShieldCheck className="h-4 w-4 text-green-600" />
+              <div className="stat-card rounded-2xl border border-white/30 bg-white/20 backdrop-blur-md p-5 shadow-xl">
+                <p className="text-sm font-semibold text-blue-950" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>Active Accounts</p>
+                <p className="mt-2 text-3xl font-extrabold text-slate-950 tracking-tight" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.4)' }}>{accountCount}</p>
+                <div className="mt-4 flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-blue-950" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
+                  <ShieldCheck className="h-4 w-4 text-green-300" />
                   Secured by Credit Lens Guard
                 </div>
               </div>
-              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-lg sm:col-span-2">
-                <p className="text-sm text-slate-600 font-medium">Transactions Tracked</p>
+              <div className="stat-card rounded-2xl border border-white/30 bg-white/20 backdrop-blur-md p-5 shadow-xl sm:col-span-2">
+                <p className="text-sm font-semibold text-blue-950" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>Transactions Tracked</p>
                 <div className="mt-2 flex items-end justify-between">
-                  <span className="text-3xl font-extrabold text-blue-900 tracking-tight">{totalTransactions}</span>
-                  <span className="text-xs text-slate-500 uppercase tracking-wider">Current period</span>
+                  <span className="text-3xl font-extrabold text-slate-950 tracking-tight" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.4)' }}>{totalTransactions}</span>
+                  <span className="text-xs font-semibold text-blue-950 uppercase tracking-wider" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>Current period</span>
                 </div>
               </div>
             </div>
