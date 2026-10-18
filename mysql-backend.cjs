@@ -390,7 +390,8 @@ await pool.execute(`
     
     console.log('✅ Enhanced database tables initialized successfully');
   } catch (error) {
-    console.error('❌ Database initialization error:', error.message);
+    console.error('❌ Database initialization error:', error.message || error);
+    console.error(error);
     throw error;
   }
 };
@@ -2583,7 +2584,8 @@ const startServer = async () => {
       console.log(`Press Ctrl+C to stop the server`);
     });
   } catch (error) {
-    console.error('❌ Failed to start server:', error.message);
+    console.error('❌ Failed to start server:', error.message || error);
+    console.error(error);
     process.exit(1);
   }
 };
