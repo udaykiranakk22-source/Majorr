@@ -78,10 +78,10 @@ async function sendOTP(email, otp) {
 
 // MySQL Database Configuration
 const dbConfig = {
-  host: process.DB_HOST || 'localhost',
+  host: process.env.DB_HOST || 'localhost',
   port: process.env.DB_PORT || 3306,
-  user: process.env.DB_USER || 'credit_lens_user',
-  password: process.env.DB_PASSWORD || 'credit_lens_password',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || '',
   database: process.env.DB_NAME || 'credit_lens',
   waitForConnections: true,
   connectionLimit: 10,
